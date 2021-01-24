@@ -53,22 +53,12 @@
         <hr>
         {% for transaction in transactions %}
             {% if transaction.getClassName == "MoneyRequest"%}
-                {% if transaction.requesterId == user_id %}
-                    <div class="transaction" id="request">
-                        <div class="operation">Requested</div>
-                        <div class="amount">{{ transaction.amount }}€</div>
-                        <div class="date">{{ transaction.formattedDate }}</div>
-                        <div class="user">{{ transaction.requesterEmail }}</div>
-                    </div>
-                {% endif %}
-                {% if transaction.userId == user_id %}
-                    <div class="transaction" id="request">
-                        <div class="operation">Got Requested</div>
-                        <div class="amount">{{ transaction.amount }}€</div>
-                        <div class="date">{{ transaction.formattedDate }}</div>
-                        <div class="user">{{ transaction.requesterEmail }}</div>
-                    </div>
-                {% endif %}
+                <div class="transaction" id="request">
+                    <div class="operation">Requested</div>
+                    <div class="amount">{{ transaction.amount }}€</div>
+                    <div class="date">{{ transaction.formattedDate }}</div>
+                    <div class="user">{{ transaction.requesterEmail }}</div>
+                </div>
             {% endif %}
 
             {% if transaction.getClassName == "MoneySend"%}
