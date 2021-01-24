@@ -14,6 +14,6 @@ RUN apk --update upgrade \
 
 COPY etc/php/ /usr/local/etc/php/
 
-ENV PORT 8080
+ENV PORT 80
 ENV HOST 0.0.0.0
-EXPOSE 8080
+EXPOSE 80
