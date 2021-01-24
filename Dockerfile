@@ -13,3 +13,7 @@ RUN apk --update upgrade \
     && apk del .phpize-deps
 
 COPY etc/php/ /usr/local/etc/php/
+
+ENV PORT 8080
+ENV HOST 0.0.0.0
+EXPOSE 8080
