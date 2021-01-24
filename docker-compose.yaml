@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "9030:9001"
+      - "8080:9001"
     volumes:
       - .:/app
     depends_on:
@@ -41,7 +41,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 9090:9090
     depends_on:
       - db
 
