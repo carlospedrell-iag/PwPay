@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+{% block title %} Pending Requests {% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/pending.css"/>
+{% endblock %}
+
+{% block content %}
+    <br>    
+    <a href="{{ url_for('dashboard')}}">< Go back</a>
+    <h2>{{ block('title') }}</h2>
+    
+    {% if money_requests is not empty %}
+        <br>
+        <br>
+        <div class="request_container">
+            <div class="legend">
+                <div>From</div>
+                <div>Amount</div>
+                <div></div>
+            </div>
+        <hr>
+        {% for request in money_requests %}
+            {% if not request.isCompleted %}
+                <div class="request">
+                    <div class="requester_email">{{ request.requesterEmail }}</div>
+                    <div class="amount">{{ request.amount }}€</div>
+                    <a class="button" href="{{ full_url_for('home') }}account/money/requests/{{ request.id }}/accept">Accept</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>You have no requests.</p>
+    {% endif %}
+
+{% endblock %}

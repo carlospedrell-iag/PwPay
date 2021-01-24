@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+{% block title %} Request Money {% endblock %}
+
+
+{% block content %}
+    <br>    
+    <a href="{{ url_for('dashboard')}}">< Go back</a>
+    <h2>{{ block('title') }}</h2>
+
+    <form action="{{ url_for('request_money') }}" method="POST">
+        <p>Email of the sender</p>
+        <input type="text" name="request_money_from" value="{{ email }}" required>
+
+        <p>Amount (€)</p>
+        <input type="number" name="amount" step="0.01" value="0.00" min="0" required>
+        
+        <br>
+        <br>
+        <br>
+        <button type="submit" name="submit">Send</button>
+        <br>
+
+        {% if errors %}
+            {% for error in errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if success %}
+            <p class="success">{{ success }}</p>
+        {% endif %}
+
+    </form>
+{% endblock %}

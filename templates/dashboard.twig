@@ -1,0 +1,126 @@
+{% extends "base.twig" %}
+{% block title %} {{user}} {% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/dashboard.css"/>
+    <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/transactions.css"/>
+{% endblock %}
+
+{% block intro %}
+
+    <div class="intro">
+        <br>
+        <br>
+        <br>
+        <h2>{{ block('title') }}</h2>
+  
+        <br>
+        <div class="balance">
+            <h3>Current Balance: </h3>
+            <h1>{{balance}}€</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {% if notifications is not empty %}
+        {% for notification in notifications %}
+            <p class="success">{{ notification }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if errors %}
+        {% for error in errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    
+    <h2>Latest Transactions</h2>
+
+    
+
+    {% if transactions is not empty %}
+        <br>
+        <div class="transaction_container">
+            <div class="transaction_legend">
+                <div>Operation</div>
+                <div>Amount</div>
+                <div>Date</div>
+                <div>To/From</div>
+            </div>
+        <hr>
+        {% for transaction in transactions %}
+            {% if transaction.getClassName == "MoneyRequest"%}
+                {% if transaction.requesterId == user_id %}
+                    <div class="transaction" id="request">
+                        <div class="operation">Requested</div>
+                        <div class="amount">{{ transaction.amount }}€</div>
+                        <div class="date">{{ transaction.formattedDate }}</div>
+                        <div class="user">{{ transaction.requesterEmail }}</div>
+                    </div>
+                {% endif %}
+                {% if transaction.userId == user_id %}
+                    <div class="transaction" id="request">
+                        <div class="operation">Got Requested</div>
+                        <div class="amount">{{ transaction.amount }}€</div>
+                        <div class="date">{{ transaction.formattedDate }}</div>
+                        <div class="user">{{ transaction.requesterEmail }}</div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {% if transaction.getClassName == "MoneySend"%}
+
+                {% if transaction.userId == user_id %}
+                    <div class="transaction" id="send">
+                        <div class="operation">Sent</div>
+                        <div class="amount">-{{ transaction.amount }}€</div>
+                        <div class="date">{{ transaction.formattedDate }}</div>
+                        <div class="user">{{ transaction.recipientEmail }}</div>
+                    </div>
+                {% endif %}
+                {% if transaction.recipientId == user_id %}
+                    <div class="transaction" id="recieve">
+                        <div class="operation">Recieved</div>
+                        <div class="amount">+{{ transaction.amount }}€</div>
+                        <div class="date">{{ transaction.formattedDate }}</div>
+                        <div class="user">{{ transaction.recipientEmail }}</div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {% if transaction.getClassName == "MoneyCharge"%}
+                <div class="transaction" id="charge">
+                    <div class="operation">Charge</div>
+                    <div class="amount">+{{ transaction.amount }}€</div>
+                    <div class="date">{{ transaction.formattedDate }}</div>
+                    <div class="user">-------------</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    {% else %}
+        <p>There are no transactions.</p>
+    {% endif %}
+    
+    <a href="{{ full_url_for('transactions') }}" >All Transactions</a>
+    <br>
+    <br>
+    <a href="{{ full_url_for('send_money') }}" class="button">Send Money</a>
+    
+    <a href="{{ full_url_for('request_money') }}" class="button">Request Money</a>
+
+    <br>
+    <br>
+    <a href="{{ full_url_for('pending') }}" >Pending Requests</a>
+    
+    <br>
+    <br>
+    <a href="{{ full_url_for('bank_account') }}" >Bank Account Settings</a>
+
+    
+
+{% endblock %}

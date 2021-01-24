@@ -1,0 +1,40 @@
+:root {
+    --main-color: rgb(0, 109, 233);
+    --main-font-color: rgb(31, 31, 31);
+}
+
+.intro{
+    background: rgb(161,214,240);
+    background: linear-gradient(0deg, rgba(161,214,240,1) 0%, rgba(50,148,218,1) 40%, rgba(0,109,233,1) 62%, rgba(0,93,212,1) 79%, rgba(0,68,180,1) 100%);
+    padding-bottom: 4em;
+    color: white;
+}
+.intro >h2 {
+    margin:0;
+    color: white;
+    text-align: center;
+}
+
+.balance > h1{
+    font-size: 3em;
+    margin: 0;
+}
+
+.balance > h3{
+    color: rgb(0, 54, 135);
+    margin: 0;
+    margin-bottom: .5em;
+}
+
+.balance{
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    margin-right: 1em;
+}
+
+

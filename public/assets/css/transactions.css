@@ -1,0 +1,45 @@
+.transaction_container{
+    width: 60em;
+}
+
+.transaction_legend{
+    display: grid;
+    grid-template-columns: 19% 20% 45% 40%;
+    align-items: center;
+
+
+    padding: 0em;
+
+    margin-left: 1.4em;
+    color: rgb(83, 83, 83);
+}
+
+.transaction {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 40%;
+
+    align-items: center;
+    margin-bottom: 1em;
+    background-color: rgb(228, 235, 241);
+    padding: .5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 5px;
+}
+
+div.user{
+    justify-self: end;
+}
+
+#send > div.amount {
+    color:red;
+}
+
+#recieve > div.amount {
+    color:rgb(28, 170, 0);
+}
+
+#charge > div.amount {
+    color:rgb(28, 170, 0);
+}
+

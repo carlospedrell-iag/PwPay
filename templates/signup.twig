@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+{% block title %} Sign Up {% endblock %}
+
+
+{% block content %}
+
+    <h2>{{ block('title') }}</h2>
+    
+    <form id="signup-form" action="{{ url_for('signup') }}" method="POST">
+        <p>Email</p>
+        <input type="text" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}" placeholder="Enter email" required>
+		{% if formErrors.email %}
+            <p class="error">{{ formErrors.email }}</p>
+        {% endif %}
+
+        <p>Password</p>
+        <input type="password" name="password" value="{% if formData.password %}{{ formData.password }}{% endif %}" placeholder="Enter password" required>
+		{% if formErrors.password %}
+            <p class="error">{{ formErrors.password }}</p>
+        {% endif %}
+
+		<p>Your Birthday</p>
+		<input type="date" name="birthdate" value="{% if formData.birthdate %}{{ formData.birthdate }}{% endif %}" required>
+        {% if formErrors.birthdate %}
+            <p class="error">{{ formErrors.birthdate }}</p>
+        {% endif %}
+        <br>
+		<br>
+		<br>
+        <button type="submit" name="submit">Send</button>
+        <br>
+        {% if success_message %}
+            <p class="success">{{ success_message }}</p>
+        {% endif %}
+    </form>
+
+{% endblock %}

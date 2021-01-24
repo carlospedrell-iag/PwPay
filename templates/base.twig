@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+	    <title>{% block title %}{% endblock %} - Pwpay</title>
+        
+    {% endblock %}
+    
+    {% block styles %}
+        <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/base.css"/>
+        <link rel="stylesheet" href="{{ full_url_for('home') }}assets/css/normalize.css"/>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {% block header %}
+        <div class="logo"><a href="{{ full_url_for('home') }}">PwPay</a> </div>
+        <nav>
+            {% block nav %}
+                {% if not session_set %}
+                <a href="{{ full_url_for('signup') }}">SIGN UP</a>
+                <a href="{{ full_url_for('signin') }}">SIGN IN</a>
+                {% endif %}
+                {% if session_set %}
+                <a href="{{ full_url_for('profile') }}"><img src="{{ full_url_for('home') }}{{profile_picture}}" height="30" width="30" alt="profile picture"></a>
+                <a href="{{ full_url_for('dashboard') }}">DASHBOARD</a>
+                <form id="signup-form" action="{{ url_for('signout') }}" method="POST">
+                    <button type="submit" name="submit">SIGN OUT</button>
+                </form>
+                {% endif %}
+            {% endblock %}
+            
+        </nav>
+        {% endblock %}
+    </header>
+    {% block intro %}{% endblock %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <script>
+    {% block scripts %}
+    
+    {% endblock %}
+    </script>
+    <footer>{% block footer %}<p>Alex & Carlos © 2020</p>{% endblock %}</footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,500&display=swap');
+
+:root {
+    --main-color: rgb(0, 109, 233);
+    --main-font-color: rgb(31, 31, 31);
+}
+
+body {
+    font-family: Roboto;
+    color: var(--main-font-color);
+}
+
+main{
+    padding-left:9em;
+    padding-right:9em;
+    
+}
+
+h2{
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+header{ 
+    background-color: var(--main-color);
+    top: 0;
+
+    padding-top: 1em;
+    padding-left: 9em;
+    padding-right: 9em;
+    padding-bottom: 0.7em;
+    display:flex;
+    justify-content:space-between;
+}
+
+nav{
+    display:flex;
+    margin-right: 4em;
+    font-size: 1em;
+    align-items: center;
+}
+nav > a{
+    margin-left: 2em;
+    color: white;
+    text-decoration: none;
+
+}
+
+nav > a > img{
+    border-width: medium;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-radius: 30%;
+      
+}
+nav > form > button{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    cursor: pointer;
+    margin-left: 2em;
+    color: white;
+}
+
+
+
+.logo{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+}
+
+.logo > a{
+    color: white;
+    text-decoration: none;
+}
+
+a.button{
+   
+    background-color: var(--main-color);
+    border: none;
+    border-radius: .5em;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: background-color 200ms ease-in-out, transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+    
+}
+
+a.button:hover{
+    background-color: rgb(45, 154, 255);
+
+    transform: translateY(-6%);
+    box-shadow: 0 .6em 1em rgba(0, 0, 0, 0.288);
+}
+
+a.button:active{
+    transform: translateY(0%);
+    box-shadow: 0 .3em .5em rgba(0, 0, 0, 0.288);
+
+}
+
+footer{
+    margin-top: 5em;
+    min-height: 70px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    display: flex;
+    align-items: flex-end;   
+    justify-content: center;
+}
+
+footer > p{
+    color:white;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: rgb(0, 168, 0);
+}
+
+
+.phone{
+    display:flex;
+    align-items: center;
+}
+
+.phone > p{
+    margin: 0;
+    margin-right: .5em;
+}
+
+#iban{
+    width: 15em;
+}
+
+hr{
+    
+}

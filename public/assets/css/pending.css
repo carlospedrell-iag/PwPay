@@ -1,0 +1,35 @@
+.request_container{
+    width: 60em;
+}
+
+.legend{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    padding: 0em;
+
+    margin-left: 1.4em;
+    color: rgb(83, 83, 83);
+}
+
+.request {
+    display: grid;
+    grid-template-columns: 50% 40% 10%;
+    align-items: center;
+    margin-bottom: 1em;
+    background-color: rgb(228, 235, 241);
+    padding: .5em;
+    padding-left: 1em;
+    border-radius: 5px;
+
+
+}
+
+a.button {
+
+    padding: .4em;
+    text-align: center;
+    
+}

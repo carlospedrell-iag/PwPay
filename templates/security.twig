@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+{% block title %} Change your password {% endblock %}
+
+
+{% block content %}
+
+    <h2>{{ block('title') }}</h2>
+    
+    <form id="signin-form" action="{{ url_for('security') }}" method="POST">
+        
+
+        <p>Your current password</p>
+        <input type="password" name="old_password"  required>
+        <p>New Password</p>
+        <input type="password" name="new_password" required>
+		<p>Confirm Password</p>
+        <input type="password" name="confirm_password"  required>
+        <br>
+		<br>
+		<br>
+        {% if password_error %}
+            <p class="error">{{ password_error }}</p>
+        {% endif %}
+        <button type="submit" name="submit">Submit</button>
+        <br>
+        {% if success_message %}
+            <p class="success">{{ success_message }}</p>
+        {% endif %}
+    </form>
+
+    
+
+{% endblock %}

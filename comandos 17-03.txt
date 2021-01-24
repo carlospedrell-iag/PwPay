@@ -1,0 +1,15 @@
+
+docker stop $(docker ps -a -q)
+
+docker rm $(docker ps -a -q)
+
+REGENERAR FICHERO AUTO LOAD
+docker run --rm --interactive --tty --volume $PWD:/app composer composer dumpa
+
+COMPOSER:
+docker run --rm --interactive --tty --volume $PWD:/app composer require php-di/slim-bridge slim/twig-view:^3.0
+
+
+docker volume rm $(docker volume ls -q)
+docker container prune
+docker volume prune

@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+{% block title %}Bank Account{% endblock %}
+
+
+{% block content %}
+<br>
+    <a href="{{ url_for('dashboard')}}">< Go back</a>
+    <h2>{{block('title')}}</h2>
+
+    {% if not owner_name %}
+        <p>Register your bank account details</p>
+
+        <form  action="{{ url_for('bank_account') }}" method="POST">
+            <p>Your name</p>
+            <input type="text" name="owner_name" required>
+
+            <p>IBAN</p>
+            <input id="iban" type="text" name="iban"  placeholder="IBAN">
+
+            <br>
+            <br>
+            <br>
+            <button type="submit" name="submit">Send</button>
+        </form>
+
+        {% if errors %}
+            {% for error in errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if success %}
+            <p class="success">{{ success }}</p>
+        {% endif %}
+    {% endif %}
+
+    {% if owner_name %}
+        <p><b>Your bank account details</b></p>
+
+        <form action="{{ url_for('bank_account') }}" method="POST">
+            <p>Your name</p>
+            <input type="text" name="owner_name" value="{{owner_name}}" disabled>
+
+            <p>IBAN</p>
+            <input id="iban" type="text" name="iban" value="{{iban}}..."  placeholder="IBAN" disabled>
+
+        </form>
+
+        {% if errors %}
+            {% for error in errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if success %}
+            <p class="success">{{ success }}</p>
+        {% endif %}
+        <br>
+        <br>
+        <p><b>Load money into your account</b></p>
+
+        <form action="{{ url_for('load_money') }}" method="POST">
+            <p>Amount (€)</p>
+            <input type="number" name="amount" step="0.01" value="0.00" min="0" required>
+
+            <br>
+            <br>
+            <br>
+            <button type="submit" name="submit">Load</button>
+        </form>
+
+        {% if load_error %}
+            <p class="error">{{ load_error }}</p>
+        {% endif %}
+        {% if load_success %}
+            <p class="success">{{ load_success }}</p>
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    document.getElementById('iban').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+});
+{% endblock %}
